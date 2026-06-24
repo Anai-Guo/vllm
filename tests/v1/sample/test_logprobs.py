@@ -1126,6 +1126,9 @@ def test_spec_decode_logprobs(
         # spec decode model so the comparison isolates spec decode.
         enable_chunked_prefill=True,
         max_num_batched_tokens=32,
+        # Use eager mode for both runs so the comparison is not affected
+        # by compilation/cudagraph differences (matches the docstring).
+        enforce_eager=True,
         enable_prefix_caching=False,
         **ROCM_DETERMINISM_KWARGS,
     )
